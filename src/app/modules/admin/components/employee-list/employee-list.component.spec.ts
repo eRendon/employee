@@ -12,6 +12,7 @@ describe('EmployeeComponent', () => {
     });
     fixture = TestBed.createComponent(EmployeeListComponent);
     component = fixture.componentInstance;
+    component.employees = []
     fixture.detectChanges();
   });
 
