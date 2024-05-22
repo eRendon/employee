@@ -5,7 +5,7 @@ import { DashboardComponent } from './pages/dashboard/dashboard.component'
 
 const routes: Routes = [
   {
-    path: 'admin',
+    path: '',
     component: LayoutComponent,
     children: [
       {

@@ -32,9 +32,10 @@ export class ModalService {
     this.childComponentRef = createComponent(childComponent, {
       environmentInjector: this.appRef.injector
     })
-
+    console.log(data)
+    console.log(this.childComponentRef)
     if (data) {
-      Object.assign(this.childComponentRef.instance, data)
+      Object.assign(this.childComponentRef.instance, { data })
     }
 
     this.modalComponentRef.instance.viewContainerRef.insert(this.childComponentRef.hostView)

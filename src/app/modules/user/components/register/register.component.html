@@ -1,0 +1,80 @@
+<div class="min-h-[100vh] flex justify-center items-center">
+  <div class="!visible transition-opacity duration-150 !opacity-100" id="v0-container"
+       style="visibility:hidden;opacity:0">
+    <div class="mx-auto max-w-md space-y-6">
+      <div class="space-y-2 text-center">
+        <h1 class="text-3xl font-bold">Register</h1>
+        <p class="text-gray-500 dark:text-gray-400">
+          Create your account to get started.
+        </p>
+      </div>
+      <form [formGroup]="employee" (ngSubmit)="register()" class="space-y-4">
+        <div class="grid grid-cols-2 gap-4">
+          <div class="space-y-2">
+            <label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                   for="name">Name</label>
+            <input
+              formControlName="name"
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="name" placeholder="John Doe" required="">
+            <div *ngIf="employee.get('name')?.invalid && employee.get('name')?.touched">
+              <small class="text-red-500" *ngIf="employee.get('name')?.errors?.['required']">El nombre es requerido.</small>
+            </div>
+          </div>
+          <div class="space-y-2">
+            <label
+              class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+              for="sureName">
+              Surname
+            </label>
+            <input
+              formControlName="surName"
+              class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+              id="sureName" placeholder="Restrepo" required="" type="text">
+            <div *ngIf="employee.get('surName')?.invalid && employee.get('surName')?.touched">
+              <small class="text-red-500" *ngIf="employee.get('surName')?.errors?.['required']">El nombre es requerido.</small>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <app-select
+            (onSelectOption)="onSelectOption($event)"
+            [options]="positionsData.positions"
+            [selectedOption]="employee.get('job')?.value ?? 'Seleccione una opción'">
+          </app-select>
+          <div *ngIf="employee.get('job')?.invalid && employee.get('job')?.touched">
+            <small class="text-red-500" *ngIf="employee.get('job')?.errors?.['required']">El nombre es requerido.</small>
+          </div>
+        </div>
+        <div class="space-y-2">
+          <label
+            class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+            for="date-of-birth">
+            Date of Birth
+          </label>
+          <input
+            [value]="employee.get('birthDate')!.value | date: 'yyyy-MM-dd'"
+            formControlName="birthDate"
+            class="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50"
+            id="date-of-birth"
+            type="date">
+          <div *ngIf="employee.get('birthDate')?.invalid && employee.get('birthDate')?.touched">
+            <small class="text-red-500" *ngIf="employee.get('birthDate')?.errors?.['required']">El cumpleaños es requerido.</small>
+          </div>
+        </div>
+        <app-button label="Register"></app-button>
+      </form>
+      <div class="text-center text-sm text-gray-500 dark:text-gray-400">
+        By signing up, you agree to our <a class="underline" href="#" rel="ugc">
+        Terms of Service
+      </a>
+        and <a class="underline" href="#" rel="ugc">
+        Privacy Policy
+      </a>
+        .
+      </div>
+    </div>
+  </div>
+<app-loading></app-loading>
+  <app-alert></app-alert>
+</div>

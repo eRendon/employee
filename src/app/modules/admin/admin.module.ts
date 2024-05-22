@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common'
 
 import { AdminRoutingModule } from './admin-routing.module';
 import { EmployeeListComponent } from './components/employee-list/employee-list.component';
@@ -9,6 +9,7 @@ import { SidebarComponent } from './layout/sidebar/sidebar.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { EmployeeComponent } from './components/employee/employee.component'
 import { SharedModule } from '../../shared/shared.module'
+import { ReactiveFormsModule } from '@angular/forms'
 
 @NgModule({
   declarations: [
@@ -25,9 +26,13 @@ import { SharedModule } from '../../shared/shared.module'
     LayoutComponent
   ],
   imports: [
-    CommonModule,
     AdminRoutingModule,
-    SharedModule
+    SharedModule,
+    ReactiveFormsModule,
+    CommonModule
+  ],
+  providers: [
+    DatePipe
   ]
 })
 export class AdminModule { }

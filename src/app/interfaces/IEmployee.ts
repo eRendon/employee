@@ -3,4 +3,5 @@ export interface IEmployee {
   job: string
   birthDate: Date
   surName: string
+  id: number
 }

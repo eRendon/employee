@@ -1,0 +1,15 @@
+<div class="relative">
+  <button (click)="toggleDropdown()" type="button" class="w-full flex items-center justify-between px-3 py-2 border border-gray-300 rounded-md bg-white text-sm focus:outline-none focus:border-blue-500 focus:ring focus:ring-blue-200">
+    <span class="capitalize">{{ selectedOption }}</span>
+    <svg *ngIf="isOpen" class="w-4 h-4 transform rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+    <svg *ngIf="!isOpen" class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+  </button>
+
+  <ul *ngIf="isOpen" class="absolute z-10 mt-1 w-full bg-white border border-gray-300 rounded-md shadow-lg transition-transform duration-300 transform translate-y-0 origin-top">
+    <li *ngFor="let option of options"
+        (click)="onSelect(option)"
+        class="px-4 py-1 hover:bg-gray-100 cursor-pointer capitalize">
+      {{ option }}
+    </li>
+  </ul>
+</div>

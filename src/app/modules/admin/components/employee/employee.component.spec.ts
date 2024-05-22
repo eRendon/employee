@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EmployeeComponent } from './employee.component';
+import { ButtonComponent } from '../../../../shared/components/atomic/button/button.component'
 
 describe('EmployeeComponent', () => {
   let component: EmployeeComponent;
@@ -8,7 +9,7 @@ describe('EmployeeComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [EmployeeComponent]
+      declarations: [EmployeeComponent, ButtonComponent]
     });
     fixture = TestBed.createComponent(EmployeeComponent);
     component = fixture.componentInstance;
