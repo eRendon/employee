@@ -6,6 +6,7 @@ import { PositionsService } from '../../../../shared/services/endpoints/position
 import { IPositions } from '../../../../interfaces/IPositions'
 import { LoadingService } from '../../../../shared/services/loading/loading.service'
 import { AlertService } from '../../../../shared/services/alert/alert.service'
+import { Router } from '@angular/router'
 
 @Component({
   selector: 'app-register',
@@ -21,7 +22,8 @@ export class RegisterComponent implements OnInit {
                private employeeService: EmployeeService,
                private positionsService: PositionsService,
                private loadingService: LoadingService,
-               private alertService: AlertService
+               private alertService: AlertService,
+               private router: Router
   ) {}
 
   ngOnInit (): void {
@@ -40,9 +42,18 @@ export class RegisterComponent implements OnInit {
     })
   }
 
+  /**
+   * selected option data from jobs list
+   * @param option
+   */
+
   onSelectOption (option: string): void {
     this.employee.get('job')?.setValue(option)
   }
+
+  /**
+   * register employee data whit form employee using create property of employeeService and redirect to dashboard page
+   */
 
   async register (): Promise<void> {
     try {
@@ -51,7 +62,10 @@ export class RegisterComponent implements OnInit {
         await this.employeeService.create(this.employee.value)
         this.employee.reset()
         this.loadingService.close()
-        this.alertService.success('Se ha registrado correctamente')
+        this.alertService.success('Se ha registrado correctamente, en un momento será redirigido al panel de administración')
+        setTimeout(async () => {
+          await this.router.navigate(['/admin'])
+        }, 3000)
       } else {
         this.employee.markAllAsTouched()
       }

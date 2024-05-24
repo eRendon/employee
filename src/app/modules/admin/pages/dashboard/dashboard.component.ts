@@ -27,10 +27,16 @@ export class DashboardComponent implements AfterViewInit, OnInit {
     })
   }
 
+  /**
+   * set a container ref to render modal
+   */
   ngAfterViewInit (): void {
     this.modalService.setRootViewContainerRef(this.viewContainerRef)
   }
 
+  /**
+   * open modal component to add new employee, the children component is a reusable component to add and edit employee
+   */
   openModal (): void {
     this.modalService.open(ModalComponent, EmployeeComponent)
   }

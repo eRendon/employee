@@ -6,12 +6,22 @@ import { BehaviorSubject } from 'rxjs'
 @Injectable({
   providedIn: 'root'
 })
+
+/**
+ * all fetch mocks have delay set time out to simulate response time
+ */
+
 export class EmployeeService {
   employeesKey = 'employees'
   employees: BehaviorSubject<IEmployee[]> = new BehaviorSubject<IEmployee[]>([])
   allEmployees: IEmployee[] = []
   constructor(private localStoreService: LocalStoreService) { }
 
+  /**
+   * create a new employee in the DB (localStore), obtain the employee of DB, if null data, return empty array and generate
+   * new array with employee data and return all employees
+   * @param employee
+   */
   create(employee: IEmployee): Promise<boolean> {
     let employees: IEmployee[] = this.localStoreService.getData<IEmployee[]>(this.employeesKey) || []
 
@@ -28,6 +38,10 @@ export class EmployeeService {
     })
   }
 
+  /**
+   * get all employee data and set in behavior and static property
+   */
+
   getAll(): Promise<boolean> {
     const employees: IEmployee[] = this.localStoreService.getData<IEmployee[]>(this.employeesKey) || []
     this.allEmployees = employees
@@ -39,6 +53,12 @@ export class EmployeeService {
       }, 2000)
     })
   }
+
+  /**
+   * delete employee data by id, get all employee data from DB and filter data, set filtered data in behavior and static
+   * property
+   * @param id
+   */
 
   delete(id: number) :Promise<boolean> {
     try {
@@ -57,6 +77,12 @@ export class EmployeeService {
       throw e
     }
   }
+
+  /**
+   * edit employee data by id, get all employee data and find by id, set a new array with old data and set the new data
+   * in array.
+   * @param dataEmployee
+   */
 
   edit(dataEmployee: IEmployee): Promise<boolean> {
     return new Promise((resolve, reject) => {
@@ -85,6 +111,10 @@ export class EmployeeService {
     })
   }
 
+  /**
+   * search employee by name and filter data in behavior
+   * @param name
+   */
   searchByName(name: string): void {
     const employees = this.allEmployees.filter(employee => employee.name.toLowerCase().includes(name.toLowerCase()))
     this.employees.next(employees)

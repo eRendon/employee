@@ -14,6 +14,9 @@ export class AlertComponent implements OnInit {
 
   constructor (private alertService: AlertService) {}
 
+  /**
+   * subscribe to getAlerts observable to listening message and type data for render alert component
+   */
   ngOnInit () {
     this.alertService.getAlerts().subscribe(alert => {
       this.message = alert.message
@@ -21,6 +24,9 @@ export class AlertComponent implements OnInit {
     })
   }
 
+  /**
+   * close alert component using service
+   */
   closeAlert(): void {
     this.alertService.clear()
   }

@@ -16,6 +16,10 @@ export class HttpService {
 
   constructor(private httpClient: HttpClient) { }
 
+  /**
+   * reusable get fetch, endpoint parameter is a final url for urlBase
+   * @param endPoint
+   */
   get<T> (endPoint?: string): Observable<T> {
     const url = this.corsAnywhereUrl + this.baseUrl + endPoint;
     return this.httpClient.get<T>(url, this.httpOptions)

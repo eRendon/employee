@@ -21,6 +21,11 @@ export class EmployeeListComponent {
                private modalService: ModalService
   ) {}
 
+  /**
+   * delete employee for list of DB (localStore for this case)
+   * @param id: Number
+   */
+
   async delete (id: number): Promise<void> {
     this.loadingService.present()
     try {
@@ -32,6 +37,11 @@ export class EmployeeListComponent {
       this.alertService.error('Hubo un problema al intentar eliminar el empleado, por favor intente luego')
     }
   }
+
+  /**
+   * send params employee to open modal and employee component whit data employee to edit attributes in reusable component EmployeeComponent
+   * @param employee: IEmployee
+   */
 
   edit (employee: IEmployee) {
     this.modalService.open(ModalComponent, EmployeeComponent, employee)

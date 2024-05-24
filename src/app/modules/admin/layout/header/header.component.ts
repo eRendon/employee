@@ -9,6 +9,10 @@ import { EmployeeService } from '../../services/employee/employee.service'
 export class HeaderComponent {
   constructor (private employeeService: EmployeeService) {}
 
+  /**
+   * send params input for search employee by name in employee service
+   * @param target
+   */
   search(target: EventTarget | null ) {
     if (target instanceof HTMLInputElement) {
       const searchTerm: string = target.value;

@@ -21,6 +21,10 @@ export class SelectComponent {
     this.onSelectOption.emit(value)
   }
 
+  /**
+   * host listener to close list options when clicked outside list
+   * @param event
+   */
   @HostListener('document:click', ['$event'])
   clickOutside(event: Event): void {
     const target = event.target as HTMLElement;

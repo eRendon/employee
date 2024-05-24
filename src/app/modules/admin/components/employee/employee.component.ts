@@ -26,6 +26,9 @@ export class EmployeeComponent implements OnInit {
   ) {}
 
   ngOnInit (): void {
+    /**
+     * get positions data from api
+     */
     this.positionsService.getPositions().subscribe({
       next: positions => {
         this.positionsData = positions
@@ -45,9 +48,18 @@ export class EmployeeComponent implements OnInit {
     }
   }
 
+  /**
+   * select job option at select component
+   * @param option
+   */
+
   onSelectOption (option: string): void {
     this.formEmployee.get('job')?.setValue(option)
   }
+
+  /**
+   * create employee user before validate form
+   */
 
   async create (): Promise<void> {
     if (this.formEmployee.valid) {
